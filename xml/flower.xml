@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mlb>
+  <alleblumen>
+    <blumen>
+      <name>
+        <de>Brandkraut</de>
+        <en>Brand herb</en>
+      </name>
+      <name_latein>
+        <de>Das Artemisia abrotanum</de>
+        <en>The Artemisia abrotanum</en>
+      </name_latein>
+      <description>
+        <de>Herbwürzige Eberraute.Volksname : Eberraute</de>
+        <en></en>
+      </description>
+    </blumen>
+    <blumen>
+      <name>
+        <de>Ahorn</de>
+        <en>maple</en>
+      </name>
+      <name_latein>
+        <de>Der Acer</de>
+        <en>The Acer</en>
+      </name_latein>
+      <description>
+        <de>Diese Pflanze ist vollkommen winterhart. </de>
+        <en></en>
+      </description>
+    </blumen>
+    <blumen>
+      <name>
+        <de>Rose</de>
+        <en>rose</en>
+      </name>
+      <description>
+        <de>Sommerblühend. Die Blütenfarbe ist rosa.</de>
+        <en></en>
+      </description>
+    </blumen>
+    <blumen>
+      <name>
+        <de>Ölweide</de>
+        <en></en>
+      </name>
+      <name_latein>
+        <de>Die Elaeagnus angustifolia</de>
+        <en>The Elaeagnus angustifolia</en>
+      </name_latein>
+      <description>
+        <de>Ölweide, sparriger kleiner Baum; Blatt silbergr. behaart.</de>
+        <en></en>
+      </description>
+    </blumen>
+    <blumen>
+      <name>
+        <en></en>
+      </name>
+      <name_latein>
+        <de>Die Hamamelis</de>
+        <en></en>
+      </name_latein>
+      <description>
+        <de>Pflanzenhöhe n. 10 Jahren 4 m. Die Blütenfarbe ist kupferfarben orange.</de>
+        <en></en>
+      </description>
+    </blumen>
+  </alleblumen>
+</mlb>
