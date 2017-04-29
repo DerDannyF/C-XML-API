@@ -4,7 +4,6 @@
 
 
 omdbapi.com ist ein freier Web Service 
-
 der folgenden String (für Asterix - Sieg über Cäsar) zurückliefert:
 
 `
