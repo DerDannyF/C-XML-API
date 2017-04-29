@@ -18,4 +18,4 @@ __0.1 genutzte Namensräume__
 - `using System.Collections.Generic;` Listen
 
 
-__1 API: omdbapi.com nutzen um die Jahreszahlen aus einer XML Datei mit den zurückgegebenen Jahreszahlen zu vergleichen
+__1 API: omdbapi.com nutzen um die Jahreszahlen aus einer XML Datei mit den zurückgegebenen Jahreszahlen zu vergleichen__
