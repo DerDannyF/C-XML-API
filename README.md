@@ -1,6 +1,6 @@
 # C# XML API
 
-__Vorbereitung:__
+__0. Vorbereitung__
 
 Da die Umsetzung in C# erfolgt, brauch man einen C#-Compiler.
 Also einen Compiler installiert.
@@ -12,7 +12,7 @@ Linux:
 - Eine Dateiname.cs erstellen und den Scource reinkopieren oder runterladen.
 - Internetverbindung (API).
 - XML Datei (unter xml).
-
+__0.1 genutzte Namensräume__
 
 `using System;` System Namensraum
 
