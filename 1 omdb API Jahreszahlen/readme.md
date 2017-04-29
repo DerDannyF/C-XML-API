@@ -19,5 +19,5 @@ Am Ende vergleiche ich beide Zahlen und Abweichungen werden ausgegeben.
 
 
 __Linux__
-- Compilieren mit mcs Main.cs
-- Ausführen mit ./Main.exe
+- Compilieren mit mcs main.cs
+- Ausführen mit ./main.exe
