@@ -1,6 +1,6 @@
 # C# XML API
 
-__Vorbereitung:___
+__Vorbereitung:__
 
 Da die Umsetzung in C# erfolgt, brauch man einen C#-Compiler.
 Also einen Compiler installiert.
