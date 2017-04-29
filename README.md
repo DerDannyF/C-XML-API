@@ -16,8 +16,8 @@ Linux:
 
 `using System;` Standard
 
-`using System.Net;`für WebClient, URI
+`using System.Net;` WebClient, URI
 
-`using System.Xml;`für XMLDocument, Reader
+`using System.Xml;` XMLDocument, Reader
 
-`using System.Collections.Generic;`für Listen
+`using System.Collections.Generic;` Listen
