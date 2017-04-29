@@ -16,3 +16,6 @@ __0.1 genutzte Namensräume__
 - `using System.Net;` WebClient, Uri
 - `using System.Xml;` XmlDocument, Reader
 - `using System.Collections.Generic;` Listen
+
+
+__1 API: omdbapi.com nutzen um die Jahreszahlen aus einer XML Datei mit den zurückgegebenen Jahreszahlen zu vergleichen
