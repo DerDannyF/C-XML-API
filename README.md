@@ -12,3 +12,9 @@ Linux:
 - Eine Dateiname.cs erstellen und den Scource reinkopieren oder runterladen.
 - Internetverbindung (API).
 - XML Datei (unter xml).
+
+
+`using System;` Standard
+`using System.Net;`für WebClient, URI
+`using System.Xml;`für XMLDocument, Reader
+`using System.Collections.Generic;`für Listen
