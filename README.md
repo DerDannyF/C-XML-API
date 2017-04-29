@@ -14,7 +14,7 @@ Linux:
 - XML Datei (unter xml).
 
 
-`using System;` Standard
+`using System;` System Namensraum
 
 `using System.Net;` WebClient, URI
 
