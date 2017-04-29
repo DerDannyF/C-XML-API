@@ -18,5 +18,5 @@ __0.1 genutzte Namensräume__
 - `using System.Collections.Generic;` Listen
 
 
-[Contribution guidelines for this project](1 omdb API Jahreszahlen/readme.md)
+[Contribution guidelines for this project](https://github.com/DerDannyF/CSharp-XML-API/tree/master/1%20omdb%20API%20Jahreszahlen)
 __1 API: Jahreszahlenvergleich: XML Datei mit omdbAPI.com__
