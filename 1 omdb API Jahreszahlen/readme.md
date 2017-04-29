@@ -17,10 +17,6 @@ Am Ende vergleiche ich beide Zahlen und Abweichungen werden ausgegeben.
 
 ![Screenshot](http://up.picr.de/29045475iz.png)
 
-
-
-
-
 __Linux__
 - Compilieren mit mcs main.cs
 - Ausführen mit ./main.exe
