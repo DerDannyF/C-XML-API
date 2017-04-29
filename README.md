@@ -17,5 +17,5 @@ __0.1 genutzte Namensräume__
 
 - `using System;` System Namensraum
 - `using System.Net;` WebClient, Uri
-- `using System.Xml;` XMLDocument, Reader
+- `using System.Xml;` XmlDocument, Reader
 - `using System.Collections.Generic;` Listen
