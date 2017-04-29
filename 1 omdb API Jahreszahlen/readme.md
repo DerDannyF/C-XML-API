@@ -8,3 +8,6 @@ omdbapi.com ist eine API die folgenden String (für Asterix - Sieg über Cäsar)
 Diesen String lese ich ein und speichere die Jahreszahl `"Year":"1985"` in eine Liste ab in der ich auch die Jahreszahl aus der XML Datei database_programmes.xml abspeichere. 
 
 Am Ende vergleiche ich beide Zahlen und Abweichungen werden ausgegeben.
+
+
+![Screenshot][img]http://up.picr.de/29045475iz.png[/img]
