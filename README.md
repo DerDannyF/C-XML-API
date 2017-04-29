@@ -2,7 +2,8 @@
 
 __0. Vorbereitung__
 
-Da die Umsetzung in C# erfolgt, brauch wir einen C#-Compiler.
+Umsetzung in C#. 
+Wir brauchen einen C#-Compiler.
 
 Linux:
 `sudo apt install mono-mcs`
