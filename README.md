@@ -2,11 +2,7 @@
 
 __0. Vorbereitung__
 
-Umsetzung in C#. 
-Wir brauchen einen C#-Compiler.
-
-Linux:
-`sudo apt install mono-mcs`
+Umsetzung in C#. Wir brauchen einen C#-Compiler. Linux: `sudo apt install mono-mcs`
 
 - Ein Verzeichniss angelegt.
 - Eine Dateiname.cs erstellen und den Scource reinkopieren oder runterladen.
