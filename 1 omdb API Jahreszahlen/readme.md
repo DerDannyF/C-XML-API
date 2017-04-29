@@ -10,4 +10,4 @@ Diesen String lese ich ein und speichere die Jahreszahl `"Year":"1985"` in eine 
 Am Ende vergleiche ich beide Zahlen und Abweichungen werden ausgegeben.
 
 
-![Screenshot][img]http://up.picr.de/29045475iz.png[/img]
+![Screenshot]http://up.picr.de/29045475iz.png
