@@ -1,6 +1,6 @@
 # C# XML API
 
-Vorbereitung:
+__Vorbereitung:___
 
 Da die Umsetzung in C# erfolgt, brauch man einen C#-Compiler.
 Also einen Compiler installiert.
@@ -16,7 +16,7 @@ Linux:
 
 `using System;` System Namensraum
 
-`using System.Net;` WebClient, URI
+`using System.Net;` WebClient, Uri
 
 `using System.Xml;` XMLDocument, Reader
 
