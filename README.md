@@ -16,6 +16,7 @@ __0.1 genutzte Namensräume__
 - `using System.Net;` WebClient, Uri
 - `using System.Xml;` XmlDocument, Reader
 - `using System.Collections.Generic;` Listen
+- `using System.IO;` Zum schreiben von Dateien
 
 
 [__1. API: Jahreszahlenvergleich: XML Datei mit omdbAPI.com__](https://github.com/DerDannyF/CSharp-XML-API/tree/master/1%20omdb%20API%20Jahreszahlen)
