@@ -7,4 +7,8 @@ Ausgabe des Programms:
 
 ![Screenshot](http://up.picr.de/29128939nh.png)
 
+Am Ende sieht die Xml so aus wie wir sie gern hätten
+
+![Screenshot](http://up.picr.de/29129044rh.png)
+
 [__Zurück zu CSharp-XML-API__](https://github.com/DerDannyF/CSharp-XML-API)
