@@ -9,3 +9,4 @@
 [__2. Xml: Wohlgeformtheit__](https://github.com/DerDannyF/CSharp-XML-API/tree/master/2%20wohlgeformte%20Xml%20File)
  Teile die nicht in unsere Xml-Datei passen ausschneiden.
 
+[__3. API: Cache füllen__](https://github.com/DerDannyF/CSharp-XML-API/tree/master/3%20API%20Cache%20erstellen)
