@@ -3,9 +3,9 @@
 
 
 [__1. API: Jahreszahlenvergleich__](https://github.com/DerDannyF/CSharp-XML-API/tree/master/1%20omdb%20API%20Jahreszahlen)
- Jahreszahl in der XML Datei mit omdbAPI.com vergleichen.
+ Jahreszahl aus einer Xml-Datei mit omdbAPI.com vergleichen.
 
 
 [__2. Xml: Wohlgeformtheit__](https://github.com/DerDannyF/CSharp-XML-API/tree/master/2%20wohlgeformte%20Xml%20File)
- Teile die nicht in die Xml Datei passen ausschneiden.
+ Teile die nicht in unsere Xml-Datei passen ausschneiden.
 
