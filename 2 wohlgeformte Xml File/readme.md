@@ -3,6 +3,8 @@
 Hier und da gibt es Lese/Schreibfehler bei der Xml im Cache, die so aussehen: 
 ![Screenshot](http://up.picr.de/29128816fz.jpg)
 
+Den beheben wir, indem wir alles oberhalb von <?xml ausschneiden.
+
 Ausgabe des Programms:
 
 ![Screenshot](http://up.picr.de/29128939nh.png)
