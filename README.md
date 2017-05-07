@@ -10,3 +10,4 @@
  Teile die nicht in unsere Xml-Datei passen ausschneiden.
 
 [__3. API: Cache füllen__](https://github.com/DerDannyF/CSharp-XML-API/tree/master/3%20API%20Cache%20erstellen)
+Hilft unseren Cache mit Daten zu füllen. 
