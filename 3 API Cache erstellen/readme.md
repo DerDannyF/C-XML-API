@@ -16,10 +16,10 @@ sowie: die Abfrage if (j >= 15000) j= 1;
 
 Die 4 Server die ständig wechseln: 
 
-- http://ofdbgw.geeksphere.de/movie/", 
-- "http://ofdbgw.metawave.ch/movie/",
-- "http://ofdbgw.h1915283.stratoserver.net/movie/" und 
-- "http://ofdbgw.johann-scharl.de/movie/"};
+- http://ofdbgw.geeksphere.de/movie/, 
+- http://ofdbgw.metawave.ch/movie/,
+- http://ofdbgw.h1915283.stratoserver.net/movie/ und 
+- http://ofdbgw.johann-scharl.de/movie/
 
 
 [__Zurück zu CSharp-XML-API__](https://github.com/DerDannyF/CSharp-XML-API)
