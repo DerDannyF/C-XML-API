@@ -3,6 +3,14 @@
 Dieses Programm hilft uns, indem es einen Cache anlegt welches das arbeiten mit der ofdb API erträglich gestaltet.
 Beinhaltet 4 Server die bei TimeOut ständig wechseln. 
 
+Es werden 2 Xml Datein erstellt im akt. Verzeichniss. 
+- cache.Xml (Beinhaltet 3 mögliche Fehler die die API Rückgabe für uns nicht verwertbar machen (Titel(2) od Beschreibung(3) fehlt und Kein Resultat(1))
+- TimeOut.Xml (Hier werden Aufrufe abgespeichert, die ein TimeOut erhalten haben)
+
+Alle IDs in der cache.Xml werden bei erneuten Durchlauf ignoriert, die IDs in der TimeOut.Xml werden erneut versucht.
+
+
+
 Diese 4 Dinge helfen uns die Lücken in unserer Db zu schließen:
 /*Variabeln*/ int GesamtMenge = 150000, Teiler = 1000;
 /*Variabeln*/ int GiveID=1; 
