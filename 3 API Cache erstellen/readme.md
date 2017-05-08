@@ -3,11 +3,12 @@
 Dieses Programm hilft uns, indem es einen Cache anlegt welches das arbeiten mit der ofdb API erträglich gestaltet.
 Beinhaltet 4 Server die bei TimeOut ständig wechseln. 
 
-Es werden 2 Xml Datein erstellt im akt. Verzeichniss. 
-- **cache.xml** (Beinhaltet 3 mögliche Fehler die die API Rückgabe für uns nicht verwertbar machen (Titel(2) od Beschreibung(3) fehlt und Kein Resultat(1))
-- **TimeOut.Xml** (Hier werden Aufrufe abgespeichert, die ein TimeOut erhalten haben)
+Es wird eine Xml Datein erstellt: **cache.xml** (Beinhaltet 3 mögliche Fehler die die API Rückgabe für uns nicht verwertbar machen) 
+- Kein Resultat(1)
+- Titel(2) 
+- Beschreibung(3) fehlt 
 
-Alle IDs in der cache.Xml werden bei erneuten Durchlauf ignoriert, die IDs in der TimeOut.Xml werden erneut versucht.
+Alle IDs in der cache.Xml werden bei erneuten Durchlauf ignoriert.
 
 
 
