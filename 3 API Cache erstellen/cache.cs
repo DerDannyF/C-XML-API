@@ -8,7 +8,7 @@ namespace cacheAnlegen
 	{
 		static void Main(string[] args)
 		{
-			/*Variabeln*/ int GesamtMenge = 150000, Teiler = 1000;
+			/*Variabeln*/ int GesamtMenge = 2500000, Teiler = 1000;
 			/*Variabeln*/ int GiveID=1; 
 			try
 			{		int TeileFilmMenge = GesamtMenge / Teiler;
@@ -26,29 +26,24 @@ namespace cacheAnlegen
  *  Übergeben: int Anzahl, Erledigte Teilmenge
  *  Rückgabe: GiveID - die abgearbeitete Teilmenge der Gesamtmenge
  *  Info: Füllt den Cache Ordner mit XML Datein zur schnelleren Bearbeitung im späteren Verlauf
-*/	 	public static int loadCache(int Anzahl, int gID)
-		{ 
+*/	 public static int loadCache(int Anzahl, int gID)
+	 { 
 			int wechselURL=0, countTimeout=0;
 			string[] URL = {"http://ofdbgw.geeksphere.de/movie/", "http://ofdbgw.metawave.ch/movie/","http://ofdbgw.h1915283.stratoserver.net/movie/","http://ofdbgw.johann-scharl.de/movie/"};
 			string ProblemFall = "cache.xml";
-			string TimeOutDatei = "TimeOut.xml";
-			string meineProbleme ="", meineTimeProbleme="";
+			string meineProbleme ="";
 			if (System.IO.File.Exists(ProblemFall))
 			{
 				meineProbleme = System.IO.File.ReadAllText(ProblemFall);
 			}
-			if (System.IO.File.Exists(TimeOutDatei))
-			{
-					meineTimeProbleme = System.IO.File.ReadAllText(TimeOutDatei);
-			}
 			int i = 0; int j=gID;
 
 			while (j<Anzahl)
-			{  if (j >= 15000) j= 1;
+			{  if (j >= 30000) j= 1;
 				string html="",myCacheFile = "cache/"+ j.ToString() +".xml";
 				if (!System.IO.File.Exists(myCacheFile))
 				{ 	
-					if (((meineProbleme.Contains("id:"+j.ToString()+":")) && (!meineTimeProbleme.Contains("4 id:"+j.ToString()+":")))) { html=""; }
+					if (meineProbleme.Contains("id:"+j.ToString()+":")) { html=""; }
 					else
 					{
 						WebClient site = new WebClient ();
@@ -66,12 +61,6 @@ namespace cacheAnlegen
 								sw2.WriteLine(html);
 								Console.WriteLine("schreibe "+j+".");
 							}
-								if (meineTimeProbleme.Contains("4 id:"+j+":")) 
-								{ 
-									Console.ForegroundColor = ConsoleColor.Green;
-							Console.WriteLine("TimeOut Problem behoben ID: {0}",j);
-									Console.ForegroundColor = ConsoleColor.White;
-								}
 						}
 				} 
 				else 
@@ -97,25 +86,12 @@ namespace cacheAnlegen
 							sw.WriteLine ("Error 3 id:"+j+":Beschreibung fehlt");
 					}
 				}
-					else if(html.Contains("<rcodedesc>Fehler oder Timeout bei OFDB Anfrage</rcodedesc>") && (!meineTimeProbleme.Contains("4 id:"+j+":")))
-					{ 
-						using (System.IO.StreamWriter sw = System.IO.File.AppendText  (TimeOutDatei)) 	
-					{
-							sw.WriteLine ("Error 4 id:"+j+":TimeOut");
-					}
-				}
 					if(html.Contains("<rcodedesc>Fehler oder Timeout bei OFDB Anfrage</rcodedesc>")) countTimeout++;
-
-					if (countTimeout>=30)
-					{
-						countTimeout=0;
-						wechselURL++; 
-						if (wechselURL >= 3) {
-							wechselURL = 0;
-						}
-					}
-			}j++;	
+					if (countTimeout>=30){countTimeout=0;	wechselURL++; if (wechselURL >= 3) {wechselURL = 0;	}}
+				}
+			j++;	
 			}	
-			return(j);	} // (E) loadCache
+			return(j);	
+		} // (E) loadCache
 	} // (E) Program
 } // (E) cacheAnlegen
