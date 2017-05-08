@@ -1,5 +1,3 @@
-/*	
-*/
 using System;
 using System.Net;  
 namespace cacheAnlegen
@@ -8,8 +6,8 @@ namespace cacheAnlegen
 	{
 		static void Main(string[] args)
 		{
-			/*Variabeln*/ int GesamtMenge = 2500000, Teiler = 1000;
-			/*Variabeln*/ int GiveID=1; 
+/*Variabeln*/ int GesamtMenge = 2500000, Teiler = 1000;
+/*Variabeln*/ int GiveID=1; 
 			try
 			{		int TeileFilmMenge = GesamtMenge / Teiler;
 					for(int i = 0; i < TeileFilmMenge; i++)
@@ -24,7 +22,7 @@ namespace cacheAnlegen
 		}
 /*  Methode: loadCache
  *  Übergeben: int Anzahl, Erledigte Teilmenge
- *  Rückgabe: GiveID - die abgearbeitete Teilmenge der Gesamtmenge
+ *  Rückgabe: GiveID - die abgearbeitete Anzahl
  *  Info: Füllt den Cache Ordner mit XML Datein zur schnelleren Bearbeitung im späteren Verlauf
 */	 public static int loadCache(int Anzahl, int gID)
 	 { 
