@@ -4,7 +4,6 @@ using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net; 
 
 namespace FgotoXML
 {
@@ -14,22 +13,19 @@ namespace FgotoXML
 		{
 			
 			string FilmDatei = "database_programmes.xml";
-			string PersonenDatei = "database_people.xml";
 			string myDB = System.IO.File.ReadAllText(FilmDatei);
-			string myDB2 = System.IO.File.ReadAllText(PersonenDatei);
-
 
 			List<FilmDaten> _FILM = new List<FilmDaten>(); // FilmDaten
 		
 			int korrekt = 0;
-			for (int i = 14577; i < 286309; i++) // den Cache durchgehen
+			for (int i = 1; i < 286309; i++) // den Cache durchgehen
 			{
 			//	Console.WriteLine (i);
-				if (System.IO.File.Exists ("cache/" + i + ".xml") && (System.IO.File.Exists (FilmDatei) )) 
+				if (System.IO.File.Exists ("cache/" + i + ".xml") && (System.IO.File.Exists ("cache2/" + i + ".xml")) && (System.IO.File.Exists (FilmDatei) )) 
 				{ 
-					korrekt = leseDaten("cache/" + i + ".xml", _FILM);
+					korrekt = leseDaten(_FILM, i);
 					if (korrekt == 1)
-						schreibeXml ("cache/" + i + ".xml", FilmDatei, _FILM, i);
+						schreibeXml (FilmDatei, _FILM, i);
 					else {
 						Console.ForegroundColor = ConsoleColor.DarkGray;
 						Console.Write ("Datensatz ");
@@ -50,7 +46,7 @@ namespace FgotoXML
 			Console.WriteLine ("Filme nachher: {0} ",CountStrings (myDB, "product=\"1\""));
 		}
 
-		private static int leseDaten(string leseDatei, List<FilmDaten> _daten)
+		private static int leseDaten(List<FilmDaten> _daten, int i)
 		{
 			// My_ Variablen
 			string myTitle="", myIMDb_ID="", myDesc="",myGenre="", myMainGenre="", mySubGenre="", myLand="";
@@ -60,7 +56,9 @@ namespace FgotoXML
 			float myofdbRating, myomdbRating;
 			int scout = 0, scout2 = 0;
 			int firstScout, dazwischen, abschneiden; string htmlsub = "";
-			string html = System.IO.File.ReadAllText(leseDatei);
+			string html = System.IO.File.ReadAllText("cache/" + i + ".xml");
+			string OMDbhtml = System.IO.File.ReadAllText("cache2/"+i+".xml");
+
 			// (B) Liste füllen
 
 			// [1] Titel lesen
@@ -208,12 +206,7 @@ namespace FgotoXML
 			if (myofdbRating == 0)
 				myofdbRating = 5;
 			// (B) OMDb Abfrage
-
-			Uri OMDburi = new Uri ("http://www.omdbapi.com/?i=" + myIMDb_ID);
-			WebClient site2 = new WebClient ();
-			string OMDbhtml = site2.DownloadString (OMDburi);
-			site2.Dispose();
-			if (html.Contains ("Incorrect IMDb ID.")) 
+			if (OMDbhtml.Contains ("Incorrect IMDb ID.")) 
 			{
 				Console.WriteLine ("Falsche IMDb ID");
 			}
@@ -359,14 +352,10 @@ namespace FgotoXML
 				return(0);
 		}
 
-		private static void schreibeXml (string leseDatei, string schreibeDatei, List<FilmDaten> _daten, int DatenSatzNummer)
+		private static void schreibeXml (string schreibeDatei, List<FilmDaten> _daten, int DatenSatzNummer)
 		{
-			string inhalt = "", inhaltNeu=""; int myPosition=0, myPosition2=0;
-
-			string html = System.IO.File.ReadAllText(leseDatei);
-
-
-			inhalt = System.IO.File.ReadAllText(schreibeDatei);
+			string inhaltNeu=""; int myPosition=0;
+			string inhalt = System.IO.File.ReadAllText(schreibeDatei);
 			if (!inhalt.Contains ("imdb_id=\"" + _daten[0].ofdbIMDb_ID + "\"")) {
 				// Film noch nicht vorhanden:
 			
