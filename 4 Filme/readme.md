@@ -5,7 +5,7 @@ Als letztes bevor es mit dem spielen losgeht müssen noch die Filme eingepflegt 
 Hier gibt es noch eine längere `toDo Liste`, die ich mal andeuten will:
 - CSO (balancing)
 - Rating R
-- omdbapi.com API ersetzen durch `/cache` __(done10.05.17)__
+- omdbapi.com API ersetzen durch `/cache`  ![Screenshot](http://www.aya-forum.de/images/smilies/Haken.gif) __(done10.05.17)__
 
 Titel: 
 - alles mit [TV Serie] im Titel
