@@ -11,4 +11,30 @@ Hier gibt es noch eine längere `toDo Liste`, die ich mal andeuten will:
 - Rating R
 - omdbapi.com API ersetzen durch `/cache`
 
+Filme die Probleme bereiten
+Titel: 
+- alles mit [TV Serie] im Titel
+- alles mit [Kurzfilm] im Titel
+- Alles mit ,Der ,Die ,Das  ,The ,Eine ,Des im Titel
+
+Celebrities:
+- Wenn weniger Stars vorhanden als 6
+
+Beschreibung:
+- `"` und `<` und `>` in der Beschreibung
+- [Quellenangaben, italio]
+- "Filmdienst"
+
+Bekannte Problem - Filme
+- Die Augen des Wolfes
+- Man nennt mich Hondo
+- Im Schloß der blutigen...
+- High Riders
+- Der wildeste Westen
+- Verlobung am Wolfgangsee
+- Bengi - Sein größter Abstieg
+- Nackt und verdammt
+- Micky, Donald & Goofy
+
+
 [__Zurück zu CSharp-XML-API__](https://github.com/DerDannyF/CSharp-XML-API)
