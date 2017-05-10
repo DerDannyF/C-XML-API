@@ -11,7 +11,7 @@ Hilft den cache-Ordner `/cache` mit Daten zu füllen. (mein [Cache Ordner](https
 
 [__Schritt 2. Xml: Wohlgeformtheit__](https://github.com/DerDannyF/CSharp-XML-API/tree/master/2%20wohlgeformte%20Xml%20File)
 
- Teile die nicht in unsere Xml-Datei passen ausschneiden.
+ Teile die nicht in unsere Xml-Datei passen ausschneiden.(in Arbeit: toDoListe)
 
 [__Schritt 3. Xml: Personen Xml auffüllen__](https://github.com/DerDannyF/CSharp-XML-API/tree/master/4%20Personen%20Xml)
 
