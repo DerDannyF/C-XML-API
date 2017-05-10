@@ -7,7 +7,6 @@ Hier gibt es noch eine längere `toDo Liste`, die ich mal andeuten will:
 - Rating R
 - omdbapi.com API ersetzen durch `/cache`
 
-Filme die Probleme bereiten
 Titel: 
 - alles mit [TV Serie] im Titel
 - alles mit [Kurzfilm] im Titel
