@@ -9,5 +9,6 @@ Hier gibt es noch eine längere `toDo Liste`, die ich mal andeuten will:
 - celebrities > 4, >3, >2, >1 (Micky,Donald & Goofy...)
 - CSO (balancing)
 - Rating R
+- omdbapi.com API ersetzen durch `/cache`
 
 [__Zurück zu CSharp-XML-API__](https://github.com/DerDannyF/CSharp-XML-API)
