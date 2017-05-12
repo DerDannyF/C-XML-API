@@ -65,6 +65,26 @@ namespace FgotoXML
 			firstScout = html.IndexOf ("<titel>") + 7;
 			dazwischen = html.IndexOf ("</titel>") - html.IndexOf ("<titel>") -7;
 			myTitle = html.Substring (firstScout, dazwischen);
+			
+			/* Titel Probleme angehen:
+			 * 12.05.17
+			* Problem 1: [TV Serie] im Titel
+			* Problem 2: [Kurzfilm] im Titel
+			* Problem 3: Alles mit ,Der ,Die...
+			*/ 
+			// Problem 1: 
+			if (myTitle.Contains ("[TV Serie]")) myTitle = "";
+			// Problem 3: 
+				if (myTitle.EndsWith(", Der")) myTitle = Vorholen (myTitle, ", Der");	
+				if (myTitle.EndsWith(", Die")) myTitle = Vorholen (myTitle, ", Die");	
+				if (myTitle.EndsWith(", Das")) myTitle = Vorholen (myTitle, ", Das");	
+				if (myTitle.EndsWith(", The")) myTitle = Vorholen (myTitle, ", The");	
+				if (myTitle.EndsWith(", Eine")) myTitle = Vorholen (myTitle, ", Eine");	
+				if (myTitle.EndsWith(", Des")) myTitle = Vorholen (myTitle, ", Des");	
+				if (myTitle.EndsWith(", Ein")) myTitle = Vorholen (myTitle, ", Ein");	
+			// [E] Titel Problem angehen
+
+			
 			// [2] Jahr lesen
 			firstScout = html.IndexOf ("<jahr>") + 6;
 			dazwischen = html.IndexOf ("</jahr>") - html.IndexOf ("<jahr>") -6;
@@ -466,6 +486,14 @@ namespace FgotoXML
 			public string Darsteller5VName { get; set;}
 			public string Darsteller5NName { get; set;}
 
+		}
+		private static string Vorholen(string quelle, string problem)
+		{
+			string ziel = quelle;
+			int scout = ziel.IndexOf(problem);
+			string preFix = ziel.Substring (scout+2, ziel.Length - scout-2);
+			string postFix = ziel.Substring (0, ziel.Length - problem.Length);
+			return (preFix+ " " +postFix);
 		}
 		private static int CountStrings(string str, string regexStr) // Zählen, zählen, zählen
 		{
