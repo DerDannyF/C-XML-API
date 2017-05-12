@@ -1,5 +1,5 @@
 # C# Xml API
-[__0. Wiki (vorher lesen)__](https://github.com/DerDannyF/CSharp-XML-API/wiki/CSharp-XML-API-Wiki)
+[__0. Wiki (vorher lesen)__](https://github.com/DerDannyF/CSharp-XML-API/wiki)
 
 
 ---------------------------------------
