@@ -415,22 +415,27 @@ namespace FgotoXML
 				}
 				// [E] *****************CSO
 
-				// schreibe programme-Container
-				string neuerFilm = "\n\n<programme id=\"automatic-ID:"+DatenSatzNummer+"\" product=\"1\" imdb_id=\"" +_daten[0].ofdbIMDb_ID+ "\"  creator=\"automatic v0.1\">\n" +
-				                    "<title>\n" +
-									"<de>"+_daten[0].ofdbTitle +"</de>\n" +
-				                    "</title>\n" +
-				                    "<description>\n" +
-									"<de>"+_daten[0].ofdbDesc+"</de>\n" +
-				                    "</description>\n" +
-				                    "<staff>\n" +
-					"<member index=\"0\" function=\"1\">automatic-Celebrities-" + _daten[0].RegisseurVName + "_" + _daten[0].RegisseurNName + "</member>\n" +
-					"<member index=\"1\" function=\"2\">automatic-Celebrities-" + _daten[0].Darsteller1VName + "_" + _daten[0].Darsteller1NName + "</member>\n" +
-					"<member index=\"2\" function=\"2\">automatic-Celebrities-" + _daten[0].Darsteller2VName + "_" + _daten[0].Darsteller2NName + "</member>\n" +
-					"<member index=\"3\" function=\"2\">automatic-Celebrities-" + _daten[0].Darsteller3VName + "_" + _daten[0].Darsteller3NName + "</member>\n" +
-					"<member index=\"4\" function=\"2\">automatic-Celebrities-" + _daten[0].Darsteller4VName + "_" + _daten[0].Darsteller4NName + "</member>\n" +
-					"<member index=\"5\" function=\"2\">automatic-Celebrities-" + _daten[0].Darsteller5VName + "_" + _daten[0].Darsteller5NName + "</member>\n" +
-				                    "</staff>\n" +
+								// schreibe programme-Container
+				string neuerFilm = "\n\n<programme id=\"automatic-ID:" + DatenSatzNummer + "\" product=\"1\" imdb_id=\"" + _daten [0].ofdbIMDb_ID + "\"  creator=\"automatic v0.1\">\n" +
+				                   "<title>\n" +
+				                   "<de>" + _daten [0].ofdbTitle + "</de>\n" +
+				                   "</title>\n" +
+				                   "<description>\n" +
+				                   "<de>" + _daten [0].ofdbDesc + "</de>\n" +
+				                   "</description>\n" +
+				                   "<staff>\n" +
+				                   "<member index=\"0\" function=\"1\">automatic-Celebrities-" + _daten [0].RegisseurVName + "_" + _daten [0].RegisseurNName + "</member>\n";
+				if ((_daten [0].Darsteller1VName != "") &&(_daten [0].Darsteller1VName != ""))
+					neuerFilm +=	 "<member index=\"1\" function=\"2\">automatic-Celebrities-" + _daten [0].Darsteller1VName + "_" + _daten [0].Darsteller1NName + "</member>\n";
+				if ((_daten [0].Darsteller2VName != "") &&(_daten [0].Darsteller2VName != ""))
+					neuerFilm +=	"<member index=\"2\" function=\"2\">automatic-Celebrities-" + _daten [0].Darsteller2VName + "_" + _daten [0].Darsteller2NName + "</member>\n";
+				if ((_daten [0].Darsteller3VName != "") &&(_daten [0].Darsteller3VName != ""))
+					neuerFilm +=	"<member index=\"3\" function=\"2\">automatic-Celebrities-" + _daten [0].Darsteller3VName + "_" + _daten [0].Darsteller3NName + "</member>\n";
+				if ((_daten [0].Darsteller4VName != "") &&(_daten [0].Darsteller4VName != ""))
+					neuerFilm +=	"<member index=\"4\" function=\"2\">automatic-Celebrities-" + _daten [0].Darsteller4VName + "_" + _daten [0].Darsteller4NName + "</member>\n";
+				if ((_daten [0].Darsteller5VName != "") &&(_daten [0].Darsteller5VName != ""))
+					neuerFilm +=	"<member index=\"5\" function=\"2\">automatic-Celebrities-" + _daten [0].Darsteller5VName + "_" + _daten [0].Darsteller5NName + "</member>\n";
+					neuerFilm +=              "</staff>\n" +
 				                    "<groups target_groups=\"0\" pro_pressure_groups=\"0\" contra_pressure_groups=\"0\" />\n" +
 					"<data country=\""+_daten[0].ofdbCountry+"\" year=\""+_daten[0].ofdbYear+"\" distribution=\"1\" maingenre=\""+_daten[0].ofdbMainGenre+"\" subgenre=\""+_daten[0].ofdbSubGenre+"\" flags=\""+_daten[0].omdbAltersfreigabe+"\" blocks=\""+_daten[0].omdbRuntime+"\" price_mod=\"1\" />\n" +
 				                    "<ratings critics=\""+cr+"\" speed=\""+sp+"\" outcome=\""+ou+"\" />\n" +
