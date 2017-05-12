@@ -98,10 +98,21 @@ namespace FgotoXML
 			dazwischen = html.IndexOf ("</beschreibung>") - html.IndexOf ("<beschreibung>") -14;
 			if (dazwischen<0) Console.WriteLine("J4");
 			myDesc = html.Substring (firstScout, dazwischen);
-			if (myDesc.Contains("Quelle: Covertext")) myDesc = myDesc.Remove(0, 17);
-			if (myDesc.Contains(" eigenen Text einstellen) ")) myDesc = myDesc.Remove(0, 26);
-			if (myDesc.Contains("Quelle: Pressetext")) myDesc = myDesc.Remove(0, 18);
-			if (myDesc.Contains("Quelle: ")) myDesc = myDesc.Remove(0, 7);
+			/* Problem1 < oder > in desc
+			 * Problem2 " in desc
+			 * Date: 12.05.17
+			 * Schrotttext_ [Italo-Cinema.de] / Filmdienst / Pressetext etc.
+			*/
+			if (myDesc.Contains("<")) myDesc = myDesc.Remove(myDesc.IndexOf("<"),1 );
+			if (myDesc.Contains(">")) myDesc = myDesc.Remove(myDesc.IndexOf(">"),1 );
+			if (myDesc.Contains("\"")) myDesc = myDesc.Remove(myDesc.IndexOf("\""),1 );
+			if (myDesc.Contains("Quelle:")) myDesc = myDesc.Remove (myDesc.IndexOf("Quelle:"), 7);
+			if (myDesc.Contains(" Covertext")) myDesc = myDesc.Remove(myDesc.IndexOf(" Covertext"), 10);
+			if (myDesc.Contains(" eigenen Text einstellen) ")) myDesc = myDesc.Remove(myDesc.IndexOf(" eigenen Text einstellen) "), 26);
+			if (myDesc.Contains(" Pressetext")) myDesc = myDesc.Remove(myDesc.IndexOf(" Pressetext"), 11);
+			if (myDesc.Contains(" Filmdienst")) myDesc = myDesc.Remove(myDesc.IndexOf(" Filmdienst"), 11);
+			if (myDesc.Contains("[Italo-Cinema.de]")) myDesc = myDesc.Remove(myDesc.IndexOf("[Italo-Cinema.de]"), 17);
+			// (E) Problem
 			// [5] Genre lesen
 			firstScout = html.IndexOf ("<genre>") + 7;
 			dazwischen = html.IndexOf ("</genre>") - html.IndexOf ("<genre>") -7;
