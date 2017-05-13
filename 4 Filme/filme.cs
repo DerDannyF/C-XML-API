@@ -18,7 +18,7 @@ namespace FgotoXML
 			List<FilmDaten> _FILM = new List<FilmDaten>(); // FilmDaten
 		
 			int korrekt = 0;
-			for (int i = 1; i < 286309; i++) // den Cache durchgehen
+			for (int i = 0; i < 309000; i++) // den Cache durchgehen
 			{
 			//	Console.WriteLine (i);
 				if (System.IO.File.Exists ("cache/" + i + ".xml") && (System.IO.File.Exists ("cache2/" + i + ".xml")) && (System.IO.File.Exists (FilmDatei) )) 
@@ -50,7 +50,7 @@ namespace FgotoXML
 		{
 			// My_ Variablen
 			string myTitle="", myIMDb_ID="", myDesc="",myGenre="", myMainGenre="", mySubGenre="", myLand="";
-			int myJahr=0, myRuntime=0, myAltersfreigabe=0;
+			int myJahr=0, myRuntime=0, myFlags=0;
 			// Celebrities
 			string RVorname="", RNachname="";
 			float myofdbRating, myomdbRating;
@@ -65,16 +65,18 @@ namespace FgotoXML
 			firstScout = html.IndexOf ("<titel>") + 7;
 			dazwischen = html.IndexOf ("</titel>") - html.IndexOf ("<titel>") -7;
 			myTitle = html.Substring (firstScout, dazwischen);
-			
 			/* Titel Probleme angehen:
-			 * 12.05.17
-			* Problem 1: [TV Serie] im Titel
+			 * 13.05.17
+			* Problem 1: [TV Serie] [Serial] [TV-Mini-Serie] im Titel
 			* Problem 2: [Kurzfilm] im Titel
 			* Problem 3: Alles mit ,Der ,Die...
 			*/ 
 			// Problem 1: 
 			if (myTitle.Contains ("[TV Serie]")) myTitle = "";
 			if (myTitle.Contains ("[TV-Serie]")) myTitle = "";
+			if (myTitle.Contains ("[Serial]")) myTitle = "";
+			if (myTitle.Contains ("[TV-Mini-Serie]")) myTitle = "";
+
 			// Problem 3: 
 				if (myTitle.EndsWith(", Der")) myTitle = Vorholen (myTitle, ", Der");	
 				if (myTitle.EndsWith(", Die")) myTitle = Vorholen (myTitle, ", Die");	
@@ -85,7 +87,12 @@ namespace FgotoXML
 				if (myTitle.EndsWith(", Ein")) myTitle = Vorholen (myTitle, ", Ein");	
 			// [E] Titel Problem angehen
 
-			
+
+			Console.ForegroundColor = ConsoleColor.White;
+
+			Console.WriteLine (myTitle);
+
+
 			// [2] Jahr lesen
 			firstScout = html.IndexOf ("<jahr>") + 6;
 			dazwischen = html.IndexOf ("</jahr>") - html.IndexOf ("<jahr>") -6;
@@ -101,18 +108,108 @@ namespace FgotoXML
 			myDesc = html.Substring (firstScout, dazwischen);
 			/* Problem1 < oder > in desc
 			 * Problem2 " in desc
-			 * Date: 12.05.17
+			 * Date: 13.05.17
 			 * Schrotttext_ [Italo-Cinema.de] / Filmdienst / Pressetext etc.
 			*/
-			if (myDesc.Contains("<")) myDesc = myDesc.Remove(myDesc.IndexOf("<"),1 );
-			if (myDesc.Contains(">")) myDesc = myDesc.Remove(myDesc.IndexOf(">"),1 );
-			if (myDesc.Contains("\"")) myDesc = myDesc.Remove(myDesc.IndexOf("\""),1 );
-			if (myDesc.Contains("Quelle:")) myDesc = myDesc.Remove (myDesc.IndexOf("Quelle:"), 7);
-			if (myDesc.Contains(" Covertext")) myDesc = myDesc.Remove(myDesc.IndexOf(" Covertext"), 10);
-			if (myDesc.Contains(" eigenen Text einstellen) ")) myDesc = myDesc.Remove(myDesc.IndexOf(" eigenen Text einstellen) "), 26);
-			if (myDesc.Contains(" Pressetext")) myDesc = myDesc.Remove(myDesc.IndexOf(" Pressetext"), 11);
-			if (myDesc.Contains(" Filmdienst")) myDesc = myDesc.Remove(myDesc.IndexOf(" Filmdienst"), 11);
-			if (myDesc.Contains("[Italo-Cinema.de]")) myDesc = myDesc.Remove(myDesc.IndexOf("[Italo-Cinema.de]"), 17);
+			/*1000 Sterne leuchten raus (Xml nicht valide) */ if (myIMDb_ID == "tt0053336")	myDesc = "";
+				
+				// Sender
+				if (myDesc.Contains ("Quelle: WDR "))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: WDR "), 12);
+				if (myDesc.Contains ("Quelle: ARD"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: ARD"), 11);
+				if (myDesc.Contains ("Quelle: SWR"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: SWR"), 11);
+				if (myDesc.Contains ("Quelle: MDR"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: MDR"), 11);
+				if (myDesc.Contains ("Quelle: RBB"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: RBB"), 11);
+				if (myDesc.Contains ("Quelle: EinsFestival"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: EinsFestival"), 20);
+				if (myDesc.Contains ("Quelle: Premiere"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: Premiere"), 16);
+				if (myDesc.Contains ("Quelle: arte"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: arte"), 12);
+				if (myDesc.Contains ("Quelle: HR"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: HR"), 10);
+				// Websites
+				if (myDesc.Contains (" kino.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" kino.de"), 8);
+				if (myDesc.Contains (" kino.de "))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" kino.de "), 9);
+				if (myDesc.Contains (" leisurefoxx.de "))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" leisurefoxx.de "), 16);
+				if (myDesc.Contains (" wicked-vision.com"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" wicked-vision.com"), 18);
+				if (myDesc.Contains (" dvdmagazin.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" dvdmagazin.de"), 14);
+				if (myDesc.Contains (" Prisma-Online.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Prisma-Online.de"), 17);
+				if (myDesc.Contains (" cinefacts.d"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" cinefacts.de"), 13);
+				if (myDesc.Contains (" prisma.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" prisma.de"), 10);
+				if (myDesc.Contains (" digitaldvd.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" digitaldvd.de"), 14);
+				if (myDesc.Contains ("[Italo-Cinema.de]"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("[Italo-Cinema.de]"), 17);
+				if (myDesc.Contains (" DVD-Forum.at"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" DVD-Forum.at"), 13);
+				if (myDesc.Contains (" dvd-palace.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" dvd-palace.de"), 14);
+				if (myDesc.Contains ("Quelle: filmstarts.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: filmstarts.de"), 21);
+				if (myDesc.Contains (" DasErste.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" DasErste.de"), 12);
+				if (myDesc.Contains (" moviewiki.org"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" moviewiki.org"), 14);
+				if (myDesc.Contains (" www.movieplot.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" www.movieplot.de"), 17);
+				if (myDesc.Contains ("Quelle: ILLUSIONS UNLTD. films"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: ILLUSIONS UNLTD. films"), 30);
+				if (myDesc.Contains ("Quelle: http://filme.disney.de/baymax/story"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: http://filme.disney.de/baymax/story"), 43);
+				if (myDesc.Contains ("Quelle: Covertext"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: Covertext"), 17);
+				if (myDesc.Contains ("Quelle:  www.movieplot.de"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle:  www.movieplot.de"), 24);
+				if (myDesc.Contains ("  TV-Spielfilm"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" TV-Spielfilm"), 13);
+				if (myDesc.Contains ("Quelle: Abschrift"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: Abschrift"), 17);
+					
+				// sonstiges
+				if (myDesc.Contains ("ttool"))
+				myDesc = myDesc.Remove (myDesc.IndexOf ("ttool"), 5);
+				if (myDesc.Contains ("Quelle:"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle:"), 7);
+				if (myDesc.Contains (" Covertext VMP"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Covertext VMP"), 14);
+				if (myDesc.Contains (" Covertext"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Covertext"), 10);
+				if (myDesc.Contains ("(Covertext)"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("(Covertext)"), 11);
+				if (myDesc.Contains (" eigenen Text einstellen) "))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" eigenen Text einstellen) "), 26);
+				if (myDesc.Contains (" Pressetext"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Pressetext"), 11);
+				if (myDesc.Contains (" Filmdienst"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Filmdienst"), 11);
+				if (myDesc.Contains ("(Covertext der deutschen VHS):"))
+					myDesc = myDesc.Remove (myDesc.IndexOf ("(Covertext der deutschen VHS):"), 30);
+				if (myDesc.Contains (" Capitol Videoean "))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Capitol Videoean "), 18);
+				if (myDesc.Contains (" Galileo Medien AG"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Galileo Medien AG"), 18);
+				if (myDesc.Contains (" Loyal Video"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Loyal Video"), 12);
+				if (myDesc.Contains (" TV Movie"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" TV Movie"), 9);
+				if (myDesc.Contains (" Jacob GmbH"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Jacob GmbH"), 11);
+				if (myDesc.Contains (" Frank Trebbin"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" Frank Trebbin"), 14);
+		
 			// (E) Problem
 			// [5] Genre lesen
 			firstScout = html.IndexOf ("<genre>") + 7;
@@ -137,7 +234,8 @@ namespace FgotoXML
 					dazwischen = myGenre.IndexOf ("</titel>") -8;
 					mySubGenre = myGenre.Substring(firstScout,dazwischen);
 				}
-				/*GenreKürzel*/			if (myMainGenre == "Abenteuer") myMainGenre="1";
+				/*GenreKürzel*/			
+				if (myMainGenre == "Abenteuer") myMainGenre="1";
 				if (myMainGenre == "Action") myMainGenre="2";
 				if (myMainGenre == "Animation") myMainGenre="3";
 				if (myMainGenre == "Krimi") myMainGenre="4";
@@ -250,12 +348,11 @@ namespace FgotoXML
 				else
 				{							
 					firstScout = OMDbhtml.IndexOf ("Runtime")+10;
-					dazwischen = OMDbhtml.IndexOf ("Genre")-OMDbhtml.IndexOf ("Runtime")-16;
+					dazwischen = OMDbhtml.IndexOf ("\",\"Genre")-OMDbhtml.IndexOf ("Runtime\":\"")-13;
 					if (dazwischen<=0) {dazwischen=4;}
 					// schräges Format ausgleichen
 					//"Runtime":"1 h 30 min" Normalangabe: "Runtime": "90min"
 					string Hilfsvariable = Convert.ToString(OMDbhtml.Substring (firstScout, dazwischen));
-					//Console.WriteLine (Hilfsvariable);
 					if (Hilfsvariable.Contains("h\""))
 					{	if (Hilfsvariable.Contains ("4 h\"")) {	myRuntime = 240; }
 						if (Hilfsvariable.Contains ("3 h\"")) {	myRuntime = 180; }
@@ -283,11 +380,14 @@ namespace FgotoXML
 			//Console.WriteLine(myomdbRating);
 
 
-			// [10] Altersfreigabe
+			// [10] Flags
 			if (OMDbhtml.Contains ("\"Rated\":\"R\""))
-				myAltersfreigabe = 64;
+				myFlags = 64;
 			else
-				myAltersfreigabe = 0;
+				myFlags = 0;
+			// Edit 13.05.17 Doku = Kultur
+			if (myMainGenre == "6")
+				myFlags = 4;
 
 			// (E) OMDb Abfrage
 
@@ -348,12 +448,10 @@ namespace FgotoXML
 					}
 					
 				}
-
 			// [E] Celebrities
-
-//			Console.WriteLine (myRuntime + " " + myDesc + " "+myLand+ " " +myMainGenre);
-			if ((myRuntime != 0) && (myDesc != "") && (myLand != "nope") && (myMainGenre != "")) {
+			if ((myRuntime != 0) && (myDesc != "") && (myLand != "nope") && (myMainGenre != "") && (myTitle!="")) {
 				_daten.Add (new FilmDaten () {
+					// Ordne Daten zu
 					ofdbTitle = myTitle,
 					ofdbYear = myJahr,
 					ofdbIMDb_ID = myIMDb_ID,
@@ -364,7 +462,7 @@ namespace FgotoXML
 					ofdbRating = myofdbRating,
 					omdbRuntime = (myRuntime / 60) + 1,
 					omdbRating = myomdbRating,
-					omdbAltersfreigabe = myAltersfreigabe,
+					omdbFlags = myFlags,
 					// Celebrities
 						RegisseurVName = RVorname,
 						RegisseurNName = RNachname,
@@ -427,7 +525,7 @@ namespace FgotoXML
 				}
 				// [E] *****************CSO
 
-								// schreibe programme-Container
+				// schreibe programme-Container
 				string neuerFilm = "\n\n<programme id=\"automatic-ID:" + DatenSatzNummer + "\" product=\"1\" imdb_id=\"" + _daten [0].ofdbIMDb_ID + "\"  creator=\"automatic v0.1\">\n" +
 				                   "<title>\n" +
 				                   "<de>" + _daten [0].ofdbTitle + "</de>\n" +
@@ -449,7 +547,7 @@ namespace FgotoXML
 					neuerFilm +=	"<member index=\"5\" function=\"2\">automatic-Celebrities-" + _daten [0].Darsteller5VName + "_" + _daten [0].Darsteller5NName + "</member>\n";
 					neuerFilm +=              "</staff>\n" +
 				                    "<groups target_groups=\"0\" pro_pressure_groups=\"0\" contra_pressure_groups=\"0\" />\n" +
-					"<data country=\""+_daten[0].ofdbCountry+"\" year=\""+_daten[0].ofdbYear+"\" distribution=\"1\" maingenre=\""+_daten[0].ofdbMainGenre+"\" subgenre=\""+_daten[0].ofdbSubGenre+"\" flags=\""+_daten[0].omdbAltersfreigabe+"\" blocks=\""+_daten[0].omdbRuntime+"\" price_mod=\"1\" />\n" +
+					"<data country=\""+_daten[0].ofdbCountry+"\" year=\""+_daten[0].ofdbYear+"\" distribution=\"1\" maingenre=\""+_daten[0].ofdbMainGenre+"\" subgenre=\""+_daten[0].ofdbSubGenre+"\" flags=\""+_daten[0].omdbFlags+"\" blocks=\""+_daten[0].omdbRuntime+"\" price_mod=\"1\" />\n" +
 				                    "<ratings critics=\""+cr+"\" speed=\""+sp+"\" outcome=\""+ou+"\" />\n" +
 				                    "</programme>\n";
 				// und zurechtschnippeln
@@ -488,7 +586,7 @@ namespace FgotoXML
 			// OMDb API Rückgabe tt+[3]			
 			public int omdbRuntime {get; set;}			// [8]
 			public float omdbRating {get; set; }		// [9] siehe [7]
-			public int omdbAltersfreigabe {get; set;}	// [10]
+			public int omdbFlags {get; set;}	// [10]
 			// Celebrities
 			public string RegisseurVName {get; set;}
 			public string RegisseurNName {get; set;}
@@ -504,6 +602,7 @@ namespace FgotoXML
 			public string Darsteller5NName { get; set;}
 
 		}
+
 		private static string Vorholen(string quelle, string problem)
 		{
 			string ziel = quelle;
