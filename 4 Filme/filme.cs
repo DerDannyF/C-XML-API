@@ -110,7 +110,7 @@ namespace FgotoXML
 			dazwischen = html.IndexOf ("</beschreibung>") - html.IndexOf ("<beschreibung>") -14;
 			if (dazwischen<0) Console.WriteLine("J4");
 			myDesc = html.Substring (firstScout, dazwischen);
-						/*1000 Sterne leuchten raus (Xml nicht valide) 
+			/*1000 Sterne leuchten raus (Xml nicht valide) 
 			*/ if (myIMDb_ID == "tt0053336")	myDesc = "";
 			/* Date: 14.05.17
 			 * Schrotttext [Italo-Cinema.de] / Filmdienst / Pressetext / Quellenangabe uvm.
