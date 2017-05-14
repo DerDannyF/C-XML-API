@@ -181,7 +181,15 @@ namespace FgotoXML
 					myDesc = myDesc.Remove (myDesc.IndexOf (" TV-Spielfilm"), 13);
 				if (myDesc.Contains ("Quelle: Abschrift"))
 					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: Abschrift"), 17);
-					
+			
+				if (myDesc.Contains (" dtm.at"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" dtm.at"), 7);
+				if (myDesc.Contains (" VMP"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" VMP"), 4);
+				if (myDesc.Contains (" TV-Media.at"))
+					myDesc = myDesc.Remove (myDesc.IndexOf (" TV-Media.at"), 12);
+			
+			
 				// sonstiges
 				if (myDesc.Contains ("ttool"))
 				myDesc = myDesc.Remove (myDesc.IndexOf ("ttool"), 5);
