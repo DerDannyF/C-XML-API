@@ -9,42 +9,32 @@ namespace FgotoXML
 	class Program
 	{
 		static void Main(string[] args)
-		{
-			
-			string FilmDatei = "database_programmes.xml";
+		{	string FilmDatei = "database_programmes.xml";
 			string myDB = System.IO.File.ReadAllText(FilmDatei);
-
-			List<FilmDaten> _FILM = new List<FilmDaten>(); // FilmDaten
-		
+			List<FilmDaten> _FILM = new List<FilmDaten>();
 			int korrekt = 0;
-			for (int i = 0; i < 309000; i++) // den Cache durchgehen
+
+			for (int i = 0; i < 309000; i++) // den Cache Ordner durchgehen
 			{
-			//	Console.WriteLine (i);
 				if (System.IO.File.Exists ("cache/" + i + ".xml") && (System.IO.File.Exists ("cache2/" + i + ".xml")) && (System.IO.File.Exists (FilmDatei) )) 
 				{ 
 					korrekt = leseDaten(_FILM, i);
 					if (korrekt == 1)
 						schreibeXml (FilmDatei, _FILM, i);
 					else {
-						Console.ForegroundColor = ConsoleColor.DarkGray;
-						Console.Write ("Datensatz ");
-						Console.ForegroundColor = ConsoleColor.Red;
-						Console.Write (""+i+" Nicht");
-						Console.ForegroundColor = ConsoleColor.DarkGray;
-						Console.WriteLine (" zu verwerten");
-
+						Console.ForegroundColor = ConsoleColor.DarkGray;Console.Write ("Datensatz ");
+						Console.ForegroundColor = ConsoleColor.Red;	Console.Write (""+i+" Nicht");
+						Console.ForegroundColor = ConsoleColor.DarkGray;Console.WriteLine (" zu verwerten");
 					}
 					_FILM.Clear();
 				}
 			}
 
 			// Endausgabe
-			Console.ForegroundColor = ConsoleColor.White;
-			Console.WriteLine ("Filme vorher: {0} ",CountStrings (myDB, "product=\"1\""));
-			myDB = System.IO.File.ReadAllText(FilmDatei);
-			Console.WriteLine ("Filme nachher: {0} ",CountStrings (myDB, "product=\"1\""));
+			Console.ForegroundColor = ConsoleColor.White;Console.WriteLine ("Filme vorher: {0} ",CountStrings (myDB, "product=\"1\""));
+			myDB = System.IO.File.ReadAllText(FilmDatei);Console.WriteLine ("Filme nachher: {0} ",CountStrings (myDB, "product=\"1\""));
 		}
-
+		
 		private static int leseDaten(List<FilmDaten> _daten, int i)
 		{
 			// My_ Variablen
