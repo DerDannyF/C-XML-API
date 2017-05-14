@@ -514,11 +514,11 @@ namespace FgotoXML
 			public string Darsteller5NName { get; set;}
 
 		}
-			
+		
 		/// <summary>WegDamit</summary>
-		/// <returns>Quelle_String [OHNE] problem_String</returns>
-		/// <param name="quelle">Quelle</param>
-		/// <param name="problem">Problem</param>
+		/// <returns>quelle [ohne] problem</returns>
+		/// <param name="quelle">string: quelle</param>
+		/// <param name="problem">string: problem</param>
 		private static string WegDamit(string quelle, string problem)
 		{
 			bool rausHier = false;
@@ -527,13 +527,11 @@ namespace FgotoXML
 				if (quelle.Contains (problem)) {
 					quelle = quelle.Remove (quelle.IndexOf (problem), problem.Length);
 				} else rausHier = true;
-			} return(quelle);
-		}
 		/// <summary>Vorholen</summary>
 		/// <returns>Holt einen String von hinten des quelle_String nach Vorne und gibt den String zurück
-		/// myBsp= "Tag, Der"; myBsp = Vorholen(Bsp,", Der); =/= myBsp == "Der Tag");</returns>
-		/// <param name="quelle">Quelle.</param>
-		/// <param name="problem">Problem.</param>
+		/// myBsp= "Tag, Der"; myBsp = Vorholen(Bsp,", Der); - myBsp == "Der Tag");</returns>
+		/// <param name="quelle">string: quelle</param>
+		/// <param name="problem">string: problem</param>
 		private static string Vorholen(string quelle, string problem)
 		{
 			string ziel = quelle;
@@ -543,9 +541,9 @@ namespace FgotoXML
 			return (preFix+ " " +postFix);
 		}
 		/// <summary>CountSting</summary>
-		/// <returns>Zählt die Anzahl der regexStr_Strings im Quell_Stings Rückgabe ein int Wert.</returns>
-		/// <param name="str">Quell_String</param>
-		/// <param name="regexStr"></param>
+		/// <returns>Zählt die Anzahl der regexStr in str Rückgabe: int</returns>
+		/// <param name="str">string: str</param>
+		/// <param name="regexStr">string: regexStr</param>
 		/// Benötigt: System.Text.RegularExpressions
 		private static int CountStrings(string str, string regexStr)
 		{
