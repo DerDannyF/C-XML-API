@@ -76,6 +76,10 @@ namespace FgotoXML
 			if (myTitle.Contains ("[TV-Serie]")) myTitle = "";
 			if (myTitle.Contains ("[Serial]")) myTitle = "";
 			if (myTitle.Contains ("[TV-Mini-Serie]")) myTitle = "";
+			
+			// 14.05.17
+			// Problem 2: einfach ignorieren! (wir haben ehh zu viel Filme)
+			if (myTitle.Contains ("[Kurzfilm]")) myTitle = "";
 
 			// Problem 3: 
 				if (myTitle.EndsWith(", Der")) myTitle = Vorholen (myTitle, ", Der");	
