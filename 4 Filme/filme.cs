@@ -529,7 +529,7 @@ namespace FgotoXML
 				} else rausHier = true;
 		/// <summary>Vorholen</summary>
 		/// <returns>Holt einen String von hinten des quelle_String nach Vorne und gibt den String zurück
-		/// myBsp= "Tag, Der"; myBsp = Vorholen(Bsp,", Der); - myBsp == "Der Tag");</returns>
+		/// myBsp= "Tag, Der"; myBsp = Vorholen(Bsp,", Der"); - myBsp == "Der Tag");</returns>
 		/// <param name="quelle">string: quelle</param>
 		/// <param name="problem">string: problem</param>
 		private static string Vorholen(string quelle, string problem)
