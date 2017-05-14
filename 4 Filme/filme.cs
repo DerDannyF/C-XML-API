@@ -292,8 +292,6 @@ namespace FgotoXML
 				dazwischen = OMDbhtml.IndexOf ("imdbVotes")-OMDbhtml.IndexOf ("imdbRating")-16;
 				myomdbRating = Convert.ToSingle(OMDbhtml.Substring (firstScout, dazwischen))/10;
 			}
-			//Console.WriteLine(myomdbRating);
-
 
 			// [10] Flags
 			if (OMDbhtml.Contains ("\"Rated\":\"R\""))
@@ -491,7 +489,7 @@ namespace FgotoXML
 		public class FilmDaten  // Meine FilmDaten
 		{	// Cache
 			public string ofdbTitle { get; set; }    	// [1]
-			public int ofdbYear { get; set; } 			// [2]
+			public int ofdbYear { get; set; } 		// [2]
 			public string ofdbIMDb_ID { get; set; }   	// [3]
 			public string ofdbDesc { get; set; }  		// [4]
 			public string ofdbMainGenre {get; set; } 	// [5]
@@ -499,9 +497,9 @@ namespace FgotoXML
 			public string ofdbCountry { get; set; } 	// [6]
 			public float ofdbRating {get; set; }		// [7]
 			// OMDb API Rückgabe tt+[3]			
-			public int omdbRuntime {get; set;}			// [8]
+			public int omdbRuntime {get; set;}		// [8]
 			public float omdbRating {get; set; }		// [9] siehe [7]
-			public int omdbFlags {get; set;}	// [10]
+			public int omdbFlags {get; set;}		// [10]
 			// Celebrities
 			public string RegisseurVName {get; set;}
 			public string RegisseurNName {get; set;}
@@ -517,7 +515,7 @@ namespace FgotoXML
 			public string Darsteller5NName { get; set;}
 
 		}
-				
+			
 		private static string WegDamit(string quelle, string problem)
 		{
 			bool rausHier = false;
@@ -525,10 +523,8 @@ namespace FgotoXML
 			{
 				if (quelle.Contains (problem)) {
 					quelle = quelle.Remove (quelle.IndexOf (problem), problem.Length);
-				} else
-					rausHier = true;
-			}
-			return(quelle);
+				} else rausHier = true;
+			} return(quelle);
 		}
 
 		private static string Vorholen(string quelle, string problem)
