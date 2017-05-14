@@ -1,7 +1,6 @@
 // Aus dem Cache Filme lesen und in die database_programmes.xml einfügen schauen ob die imdbID schon vorhanden.
 // + omdbapi.com Aufruf
 using System;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -516,6 +515,10 @@ namespace FgotoXML
 
 		}
 			
+		/// <summary>WegDamit</summary>
+		/// <returns>Quelle_String [OHNE] problem_String</returns>
+		/// <param name="quelle">Quelle</param>
+		/// <param name="problem">Problem</param>
 		private static string WegDamit(string quelle, string problem)
 		{
 			bool rausHier = false;
@@ -526,7 +529,11 @@ namespace FgotoXML
 				} else rausHier = true;
 			} return(quelle);
 		}
-
+		/// <summary>Vorholen</summary>
+		/// <returns>Holt einen String von hinten des quelle_String nach Vorne und gibt den String zurück
+		/// myBsp= "Tag, Der"; myBsp = Vorholen(Bsp,", Der); =/= myBsp == "Der Tag");</returns>
+		/// <param name="quelle">Quelle.</param>
+		/// <param name="problem">Problem.</param>
 		private static string Vorholen(string quelle, string problem)
 		{
 			string ziel = quelle;
@@ -535,9 +542,14 @@ namespace FgotoXML
 			string postFix = ziel.Substring (0, ziel.Length - problem.Length);
 			return (preFix+ " " +postFix);
 		}
-		private static int CountStrings(string str, string regexStr) // Zählen, zählen, zählen
+		/// <summary>CountSting</summary>
+		/// <returns>Zählt die Anzahl der regexStr_Strings im Quell_Stings Rückgabe ein int Wert.</returns>
+		/// <param name="str">Quell_String</param>
+		/// <param name="regexStr"></param>
+		/// Benötigt: System.Text.RegularExpressions
+		private static int CountStrings(string str, string regexStr)
 		{
-			Regex regex = new Regex(regexStr);
+			System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(regexStr); 
 			return regex.Matches(str).Count;
 		}
 	} // [E] Class
