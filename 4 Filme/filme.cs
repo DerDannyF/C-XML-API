@@ -517,6 +517,8 @@ namespace FgotoXML
 				if (quelle.Contains (problem)) {
 					quelle = quelle.Remove (quelle.IndexOf (problem), problem.Length);
 				} else rausHier = true;
+			} return(quelle);
+		}
 		/// <summary>Vorholen</summary>
 		/// <returns>Holt einen String von hinten des quelle_String nach Vorne und gibt den String zurück
 		/// myBsp= "Tag, Der"; myBsp = Vorholen(Bsp,", Der"); - myBsp == "Der Tag");</returns>
