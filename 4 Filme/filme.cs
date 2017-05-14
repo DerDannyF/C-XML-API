@@ -110,119 +110,22 @@ namespace FgotoXML
 			dazwischen = html.IndexOf ("</beschreibung>") - html.IndexOf ("<beschreibung>") -14;
 			if (dazwischen<0) Console.WriteLine("J4");
 			myDesc = html.Substring (firstScout, dazwischen);
-			/* Problem1 < oder > in desc
-			 * Problem2 " in desc
-			 * Date: 13.05.17
-			 * Schrotttext_ [Italo-Cinema.de] / Filmdienst / Pressetext etc.
-			*/
-			/*1000 Sterne leuchten raus (Xml nicht valide) */ if (myIMDb_ID == "tt0053336")	myDesc = "";
-				
-				// Sender
-				if (myDesc.Contains ("Quelle: WDR "))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: WDR "), 12);
-				if (myDesc.Contains ("Quelle: ARD"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: ARD"), 11);
-				if (myDesc.Contains ("Quelle: SWR"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: SWR"), 11);
-				if (myDesc.Contains ("Quelle: MDR"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: MDR"), 11);
-				if (myDesc.Contains ("Quelle: RBB"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: RBB"), 11);
-				if (myDesc.Contains ("Quelle: EinsFestival"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: EinsFestival"), 20);
-				if (myDesc.Contains ("Quelle: Premiere"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: Premiere"), 16);
-				if (myDesc.Contains ("Quelle: arte"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: arte"), 12);
-				if (myDesc.Contains ("Quelle: HR"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: HR"), 10);
-				// Websites
-				if (myDesc.Contains (" kino.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" kino.de"), 8);
-				if (myDesc.Contains (" kino.de "))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" kino.de "), 9);
-				if (myDesc.Contains (" leisurefoxx.de "))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" leisurefoxx.de "), 16);
-				if (myDesc.Contains (" wicked-vision.com"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" wicked-vision.com"), 18);
-				if (myDesc.Contains (" dvdmagazin.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" dvdmagazin.de"), 14);
-				if (myDesc.Contains (" Prisma-Online.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Prisma-Online.de"), 17);
-				if (myDesc.Contains (" cinefacts.d"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" cinefacts.de"), 13);
-				if (myDesc.Contains (" prisma.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" prisma.de"), 10);
-				if (myDesc.Contains (" digitaldvd.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" digitaldvd.de"), 14);
-				if (myDesc.Contains ("[Italo-Cinema.de]"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("[Italo-Cinema.de]"), 17);
-				if (myDesc.Contains (" DVD-Forum.at"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" DVD-Forum.at"), 13);
-				if (myDesc.Contains (" dvd-palace.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" dvd-palace.de"), 14);
-				if (myDesc.Contains ("Quelle: filmstarts.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: filmstarts.de"), 21);
-				if (myDesc.Contains (" DasErste.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" DasErste.de"), 12);
-				if (myDesc.Contains (" moviewiki.org"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" moviewiki.org"), 14);
-				if (myDesc.Contains (" www.movieplot.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" www.movieplot.de"), 17);
-				if (myDesc.Contains ("Quelle: ILLUSIONS UNLTD. films"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: ILLUSIONS UNLTD. films"), 30);
-				if (myDesc.Contains ("Quelle: http://filme.disney.de/baymax/story"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: http://filme.disney.de/baymax/story"), 43);
-				if (myDesc.Contains ("Quelle: Covertext"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: Covertext"), 17);
-				if (myDesc.Contains ("Quelle:  www.movieplot.de"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle:  www.movieplot.de"), 24);
-				if (myDesc.Contains ("  TV-Spielfilm"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" TV-Spielfilm"), 13);
-				if (myDesc.Contains ("Quelle: Abschrift"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle: Abschrift"), 17);
+						/*1000 Sterne leuchten raus (Xml nicht valide) 
+			*/ if (myIMDb_ID == "tt0053336")	myDesc = "";
+			/* Date: 14.05.17
+			 * Schrotttext [Italo-Cinema.de] / Filmdienst / Pressetext / Quellenangabe uvm.
+			*/ string[] Beschreibungsprobleme = 
+			{"Quelle: WDR ","Quelle: WDR", "Quelle: ARD", "Quelle: SWR", "Quelle: MDR", "Quelle: RBB", "Quelle: EinsFestival",
+			"Quelle: Premiere", "Quelle: arte","Quelle: HR"," kino.de"," kino.de ", " leisurefoxx.de ", 
+			" wicked-vision.com", " dvdmagazin.de", " Prisma-Online.de", " cinefacts.de"," prisma.de", " digitaldvd.de",
+			"[Italo-Cinema.de]", " DVD-Forum.at", " dvd-palace.de", "Quelle: filmstarts.de", " DasErste.de", " moviewiki.org",
+			" www.movieplot.de"," www.movieplot.de","Quelle: ILLUSIONS UNLTD. films","Quelle: http://filme.disney.de/baymax/story",
+			"Quelle: Covertext", "Quelle:  www.movieplot.de", " TV-Spielfilm", "Quelle: Abschrift", " dtm.at", " VMP",
+			" TV-Media.at", "ttool", "Quelle:", " Covertext VMP", " Covertext", "(Covertext)", " eigenen Text einstellen) ",
+			" Pressetext", " Filmdienst", "(Covertext der deutschen VHS):", " Capitol Videoean ", " Galileo Medien AG",
+			" Loyal Video", " TV Movie", " Jacob GmbH", " Frank Trebbin" };
+			foreach (string elem in Beschreibungsprobleme) { myDesc = WegDamit (myDesc, elem); }
 			
-				if (myDesc.Contains (" dtm.at"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" dtm.at"), 7);
-				if (myDesc.Contains (" VMP"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" VMP"), 4);
-				if (myDesc.Contains (" TV-Media.at"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" TV-Media.at"), 12);
-			
-			
-				// sonstiges
-				if (myDesc.Contains ("ttool"))
-				myDesc = myDesc.Remove (myDesc.IndexOf ("ttool"), 5);
-				if (myDesc.Contains ("Quelle:"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("Quelle:"), 7);
-				if (myDesc.Contains (" Covertext VMP"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Covertext VMP"), 14);
-				if (myDesc.Contains (" Covertext"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Covertext"), 10);
-				if (myDesc.Contains ("(Covertext)"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("(Covertext)"), 11);
-				if (myDesc.Contains (" eigenen Text einstellen) "))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" eigenen Text einstellen) "), 26);
-				if (myDesc.Contains (" Pressetext"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Pressetext"), 11);
-				if (myDesc.Contains (" Filmdienst"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Filmdienst"), 11);
-				if (myDesc.Contains ("(Covertext der deutschen VHS):"))
-					myDesc = myDesc.Remove (myDesc.IndexOf ("(Covertext der deutschen VHS):"), 30);
-				if (myDesc.Contains (" Capitol Videoean "))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Capitol Videoean "), 18);
-				if (myDesc.Contains (" Galileo Medien AG"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Galileo Medien AG"), 18);
-				if (myDesc.Contains (" Loyal Video"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Loyal Video"), 12);
-				if (myDesc.Contains (" TV Movie"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" TV Movie"), 9);
-				if (myDesc.Contains (" Jacob GmbH"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Jacob GmbH"), 11);
-				if (myDesc.Contains (" Frank Trebbin"))
-					myDesc = myDesc.Remove (myDesc.IndexOf (" Frank Trebbin"), 14);
-		
-			// (E) Problem
 			// [5] Genre lesen
 			firstScout = html.IndexOf ("<genre>") + 7;
 			dazwischen = html.IndexOf ("</genre>") - html.IndexOf ("<genre>") -7;
@@ -613,6 +516,19 @@ namespace FgotoXML
 			public string Darsteller5VName { get; set;}
 			public string Darsteller5NName { get; set;}
 
+		}
+				
+		private static string WegDamit(string quelle, string problem)
+		{
+			bool rausHier = false;
+			while (rausHier == false) 
+			{
+				if (quelle.Contains (problem)) {
+					quelle = quelle.Remove (quelle.IndexOf (problem), problem.Length);
+				} else
+					rausHier = true;
+			}
+			return(quelle);
 		}
 
 		private static string Vorholen(string quelle, string problem)
