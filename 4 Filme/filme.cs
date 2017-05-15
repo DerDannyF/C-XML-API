@@ -112,7 +112,8 @@ namespace FgotoXML
 			"Quelle: Covertext", "Quelle:  www.movieplot.de", " TV-Spielfilm", "Quelle: Abschrift", " dtm.at", " VMP",
 			" TV-Media.at", "ttool", "Quelle:", " Covertext VMP", " Covertext", "(Covertext)", " eigenen Text einstellen) ",
 			" Pressetext", " Filmdienst", "(Covertext der deutschen VHS):", " Capitol Videoean ", " Galileo Medien AG",
-			" Loyal Video", " TV Movie", " Jacob GmbH", " Frank Trebbin" };
+			" Loyal Video", " TV Movie", " Jakob GmbH", " Frank Trebbin", " cinomat.kim-info.de", " filmdb.de", " Sky.de",
+			" http://programm.ard.de/?sendung=2811113427721054", " Celluloid-Dreams.de", " russellcrowe.de"," www.fox.de Produktseite"};
 			foreach (string elem in Beschreibungsprobleme) { myDesc = WegDamit (myDesc, elem); }
 			
 			// [5] Genre lesen
