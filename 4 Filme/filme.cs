@@ -113,7 +113,7 @@ namespace FgotoXML
 				" Pressetext", " Filmdienst", "(Covertext der deutschen VHS):", " Capitol Videoean ", " Galileo Medien AG",
 				" Loyal Video", " TV Movie", " Jakob GmbH", " Frank Trebbin", " cinomat.kim-info.de", " filmdb.de", " Sky.de",
 				" http://programm.ard.de/?sendung=2811113427721054", " Celluloid-Dreams.de", " russellcrowe.de"," www.fox.de Produktseite",
-				"tvmovie.de", "BamS", "VCL"};
+				"tvmovie.de", "BamS", "VCL", " schnittberichte.com"};
 			foreach (string elem in Beschreibungsprobleme) { myDesc = WegDamit (myDesc, elem); }
 
 			// [5] Genre lesen
