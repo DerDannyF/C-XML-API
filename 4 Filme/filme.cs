@@ -1,7 +1,6 @@
 // Aus dem Cache Filme lesen und in die database_programmes.xml einfügen schauen ob die imdbID schon vorhanden.
 // + omdbapi.com Aufruf
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FgotoXML
@@ -11,7 +10,7 @@ namespace FgotoXML
 		static void Main(string[] args)
 		{	string FilmDatei = "database_programmes.xml";
 			string myDB = System.IO.File.ReadAllText(FilmDatei);
-			List<FilmDaten> _FILM = new List<FilmDaten>();
+			System.Collections.Generic.List<FilmDaten> _FILM = new System.Collections.Generic.List<FilmDaten>();
 			int korrekt = 0;
 
 			for (int i = 0; i < 309000; i++) // den Cache Ordner durchgehen
@@ -34,8 +33,8 @@ namespace FgotoXML
 			Console.ForegroundColor = ConsoleColor.White;Console.WriteLine ("Filme vorher: {0} ",CountStrings (myDB, "product=\"1\""));
 			myDB = System.IO.File.ReadAllText(FilmDatei);Console.WriteLine ("Filme nachher: {0} ",CountStrings (myDB, "product=\"1\""));
 		}
-		
-		private static int leseDaten(List<FilmDaten> _daten, int i)
+
+		private static int leseDaten(System.Collections.Generic.List<FilmDaten> _daten, int i)
 		{
 			// My_ Variablen
 			string myTitle="", myIMDb_ID="", myDesc="",myGenre="", myMainGenre="", mySubGenre="", myLand="";
@@ -65,19 +64,19 @@ namespace FgotoXML
 			if (myTitle.Contains ("[TV-Serie]")) myTitle = "";
 			if (myTitle.Contains ("[Serial]")) myTitle = "";
 			if (myTitle.Contains ("[TV-Mini-Serie]")) myTitle = "";
-			
+
 			// 14.05.17
 			// Problem 2: einfach ignorieren! (wir haben ehh zu viel Filme)
 			if (myTitle.Contains ("[Kurzfilm]")) myTitle = "";
 
 			// Problem 3: 
-				if (myTitle.EndsWith(", Der")) myTitle = Vorholen (myTitle, ", Der");	
-				if (myTitle.EndsWith(", Die")) myTitle = Vorholen (myTitle, ", Die");	
-				if (myTitle.EndsWith(", Das")) myTitle = Vorholen (myTitle, ", Das");	
-				if (myTitle.EndsWith(", The")) myTitle = Vorholen (myTitle, ", The");	
-				if (myTitle.EndsWith(", Eine")) myTitle = Vorholen (myTitle, ", Eine");	
-				if (myTitle.EndsWith(", Des")) myTitle = Vorholen (myTitle, ", Des");	
-				if (myTitle.EndsWith(", Ein")) myTitle = Vorholen (myTitle, ", Ein");	
+			if (myTitle.EndsWith(", Der")) myTitle = Vorholen (myTitle, ", Der");	
+			if (myTitle.EndsWith(", Die")) myTitle = Vorholen (myTitle, ", Die");	
+			if (myTitle.EndsWith(", Das")) myTitle = Vorholen (myTitle, ", Das");	
+			if (myTitle.EndsWith(", The")) myTitle = Vorholen (myTitle, ", The");	
+			if (myTitle.EndsWith(", Eine")) myTitle = Vorholen (myTitle, ", Eine");	
+			if (myTitle.EndsWith(", Des")) myTitle = Vorholen (myTitle, ", Des");	
+			if (myTitle.EndsWith(", Ein")) myTitle = Vorholen (myTitle, ", Ein");	
 			// [E] Titel Problem angehen
 
 
@@ -105,17 +104,18 @@ namespace FgotoXML
 			 * Schrotttext [Italo-Cinema.de] / Filmdienst / Pressetext / Quellenangabe uvm.
 			*/ string[] Beschreibungsprobleme = 
 			{"Quelle: WDR ","Quelle: WDR", "Quelle: ARD", "Quelle: SWR", "Quelle: MDR", "Quelle: RBB", "Quelle: EinsFestival",
-			"Quelle: Premiere", "Quelle: arte","Quelle: HR"," kino.de"," kino.de ", " leisurefoxx.de ", 
-			" wicked-vision.com", " dvdmagazin.de", " Prisma-Online.de", " cinefacts.de"," prisma.de", " digitaldvd.de",
-			"[Italo-Cinema.de]", " DVD-Forum.at", " dvd-palace.de", "Quelle: filmstarts.de", " DasErste.de", " moviewiki.org",
-			" www.movieplot.de"," www.movieplot.de","Quelle: ILLUSIONS UNLTD. films","Quelle: http://filme.disney.de/baymax/story",
-			"Quelle: Covertext", "Quelle:  www.movieplot.de", " TV-Spielfilm", "Quelle: Abschrift", " dtm.at", " VMP",
-			" TV-Media.at", "ttool", "Quelle:", " Covertext VMP", " Covertext", "(Covertext)", " eigenen Text einstellen) ",
-			" Pressetext", " Filmdienst", "(Covertext der deutschen VHS):", " Capitol Videoean ", " Galileo Medien AG",
-			" Loyal Video", " TV Movie", " Jakob GmbH", " Frank Trebbin", " cinomat.kim-info.de", " filmdb.de", " Sky.de",
-			" http://programm.ard.de/?sendung=2811113427721054", " Celluloid-Dreams.de", " russellcrowe.de"," www.fox.de Produktseite"};
+				"Quelle: Premiere", "Quelle: arte","Quelle: HR"," kino.de"," kino.de ", " leisurefoxx.de ", 
+				" wicked-vision.com", " dvdmagazin.de", " Prisma-Online.de", " cinefacts.de"," prisma.de", " digitaldvd.de",
+				"[Italo-Cinema.de]", " DVD-Forum.at", " dvd-palace.de", "Quelle: filmstarts.de", " DasErste.de", " moviewiki.org",
+				" www.movieplot.de"," www.movieplot.de","Quelle: ILLUSIONS UNLTD. films","Quelle: http://filme.disney.de/baymax/story",
+				"Quelle: Covertext", "Quelle:  www.movieplot.de", " TV-Spielfilm", "Quelle: Abschrift", " dtm.at", " VMP",
+				" TV-Media.at", "ttool", "Quelle:", " Covertext VMP", " Covertext", "(Covertext)", " eigenen Text einstellen) ",
+				" Pressetext", " Filmdienst", "(Covertext der deutschen VHS):", " Capitol Videoean ", " Galileo Medien AG",
+				" Loyal Video", " TV Movie", " Jakob GmbH", " Frank Trebbin", " cinomat.kim-info.de", " filmdb.de", " Sky.de",
+				" http://programm.ard.de/?sendung=2811113427721054", " Celluloid-Dreams.de", " russellcrowe.de"," www.fox.de Produktseite",
+				"tvmovie.de", "BamS", "VCL"};
 			foreach (string elem in Beschreibungsprobleme) { myDesc = WegDamit (myDesc, elem); }
-			
+
 			// [5] Genre lesen
 			firstScout = html.IndexOf ("<genre>") + 7;
 			dazwischen = html.IndexOf ("</genre>") - html.IndexOf ("<genre>") -7;
@@ -265,9 +265,9 @@ namespace FgotoXML
 						if (Hilfsvariable.Contains ("1 h\"")) {	myRuntime = 60; }
 					}
 					else if (Hilfsvariable.Contains ("1 h ")) {
-							firstScout = Hilfsvariable.IndexOf ("1 h");
-							Hilfsvariable = Hilfsvariable.Substring (firstScout + 4, 2);
-							myRuntime = Convert.ToInt16 (Hilfsvariable) + 60;
+						firstScout = Hilfsvariable.IndexOf ("1 h");
+						Hilfsvariable = Hilfsvariable.Substring (firstScout + 4, 2);
+						myRuntime = Convert.ToInt16 (Hilfsvariable) + 60;
 					}
 					else {	myRuntime = Convert.ToInt16(OMDbhtml.Substring (firstScout, dazwischen));	}
 
@@ -306,51 +306,51 @@ namespace FgotoXML
 					RNachname = htmlsub.Substring (1 + scout, htmlsub.Length - (scout + 1));
 				}
 			}
-				// VARIABELN
-				int AnzahlDarsteller=1; string htmlsubsub="", name="";
-				string D1VN="",D1NN="",D2VN="",D2NN="",D3VN="",D3NN="",D4VN="",D4NN="",D5VN="",D5NN="";
+			// VARIABELN
+			int AnzahlDarsteller=1; string htmlsubsub="", name="";
+			string D1VN="",D1NN="",D2VN="",D2NN="",D3VN="",D3NN="",D4VN="",D4NN="",D5VN="",D5NN="";
 
 
-				if (html.Contains ("<besetzung>\n<person>\n<id>")) 
-				{ // Darsteller (max5)
-					scout = html.IndexOf ("<besetzung>\n<person>\n<id>");
-					scout2 = html.IndexOf ("</besetzung>");
-					htmlsub = html.Substring (scout, scout2 - scout);
-					scout = htmlsub.IndexOf ("<name>");
-					htmlsubsub = htmlsub.Substring (scout, htmlsub.Length - scout);
-					while ((AnzahlDarsteller < CountStrings (htmlsub, "<name>")) && (AnzahlDarsteller <= 5)) 
-					{
-						scout = htmlsubsub.IndexOf ("<name>");
-						scout2 = htmlsubsub.IndexOf ("</name>");
-						name = htmlsubsub.Substring (scout + 6, scout2 - scout - 6);
-						htmlsubsub = htmlsubsub.Substring (scout2 + 6, htmlsubsub.Length - (scout2 + 6));			
-						if (name.Contains (" ")) {
-							scout = name.IndexOf (" ");
-							if (AnzahlDarsteller == 1) {
-								D1VN = name.Substring (0, scout);
-								D1NN = name.Substring (1 + scout, name.Length - (scout + 1));
-							}
-							if (AnzahlDarsteller == 2) {
-								D2VN = name.Substring (0, scout);
-								D2NN = name.Substring (1 + scout, name.Length - (scout + 1));
-							}
-							if (AnzahlDarsteller == 3) {
-								D3VN = name.Substring (0, scout);
-								D3NN = name.Substring (1 + scout, name.Length - (scout + 1));
-							}
-							if (AnzahlDarsteller == 4) {
-								D4VN = name.Substring (0, scout);
-								D4NN = name.Substring (1 + scout, name.Length - (scout + 1));
-							}
-							if (AnzahlDarsteller == 5) {
-								D5VN = name.Substring (0, scout);
-								D5NN = name.Substring (1 + scout, name.Length - (scout + 1));
-							}
+			if (html.Contains ("<besetzung>\n<person>\n<id>")) 
+			{ // Darsteller (max5)
+				scout = html.IndexOf ("<besetzung>\n<person>\n<id>");
+				scout2 = html.IndexOf ("</besetzung>");
+				htmlsub = html.Substring (scout, scout2 - scout);
+				scout = htmlsub.IndexOf ("<name>");
+				htmlsubsub = htmlsub.Substring (scout, htmlsub.Length - scout);
+				while ((AnzahlDarsteller < CountStrings (htmlsub, "<name>")) && (AnzahlDarsteller <= 5)) 
+				{
+					scout = htmlsubsub.IndexOf ("<name>");
+					scout2 = htmlsubsub.IndexOf ("</name>");
+					name = htmlsubsub.Substring (scout + 6, scout2 - scout - 6);
+					htmlsubsub = htmlsubsub.Substring (scout2 + 6, htmlsubsub.Length - (scout2 + 6));			
+					if (name.Contains (" ")) {
+						scout = name.IndexOf (" ");
+						if (AnzahlDarsteller == 1) {
+							D1VN = name.Substring (0, scout);
+							D1NN = name.Substring (1 + scout, name.Length - (scout + 1));
 						}
-					AnzahlDarsteller++;
+						if (AnzahlDarsteller == 2) {
+							D2VN = name.Substring (0, scout);
+							D2NN = name.Substring (1 + scout, name.Length - (scout + 1));
+						}
+						if (AnzahlDarsteller == 3) {
+							D3VN = name.Substring (0, scout);
+							D3NN = name.Substring (1 + scout, name.Length - (scout + 1));
+						}
+						if (AnzahlDarsteller == 4) {
+							D4VN = name.Substring (0, scout);
+							D4NN = name.Substring (1 + scout, name.Length - (scout + 1));
+						}
+						if (AnzahlDarsteller == 5) {
+							D5VN = name.Substring (0, scout);
+							D5NN = name.Substring (1 + scout, name.Length - (scout + 1));
+						}
 					}
-					
+					AnzahlDarsteller++;
 				}
+
+			}
 			// [E] Celebrities
 			if ((myRuntime != 0) && (myDesc != "") && (myLand != "nope") && (myMainGenre != "") && (myTitle!="")) {
 				_daten.Add (new FilmDaten () {
@@ -367,31 +367,31 @@ namespace FgotoXML
 					omdbRating = myomdbRating,
 					omdbFlags = myFlags,
 					// Celebrities
-						RegisseurVName = RVorname,
-						RegisseurNName = RNachname,
-						Darsteller1VName = D1VN,
-						Darsteller2VName = D2VN,
-						Darsteller3VName = D3VN,
-						Darsteller4VName = D4VN,
-						Darsteller5VName = D5VN,
+					RegisseurVName = RVorname,
+					RegisseurNName = RNachname,
+					Darsteller1VName = D1VN,
+					Darsteller2VName = D2VN,
+					Darsteller3VName = D3VN,
+					Darsteller4VName = D4VN,
+					Darsteller5VName = D5VN,
 
-						Darsteller1NName = D1NN,
-						Darsteller2NName = D2NN,
-						Darsteller3NName = D3NN,
-						Darsteller4NName = D4NN,
-						Darsteller5NName = D5NN});
+					Darsteller1NName = D1NN,
+					Darsteller2NName = D2NN,
+					Darsteller3NName = D3NN,
+					Darsteller4NName = D4NN,
+					Darsteller5NName = D5NN});
 				return(1);
 			} else
 				return(0);
 		}
 
-		private static void schreibeXml (string schreibeDatei, List<FilmDaten> _daten, int DatenSatzNummer)
+		private static void schreibeXml (string schreibeDatei, System.Collections.Generic.List<FilmDaten> _daten, int DatenSatzNummer)
 		{
 			string inhaltNeu=""; int myPosition=0;
 			string inhalt = System.IO.File.ReadAllText(schreibeDatei);
 			if (!inhalt.Contains ("imdb_id=\"" + _daten[0].ofdbIMDb_ID + "\"")) {
 				// Film noch nicht vorhanden:
-			
+
 				// [B] *****************CSO (in Arbeit)
 				int cr=0, sp=0, ou=0;
 				Random zufall = new Random(); 
@@ -430,14 +430,15 @@ namespace FgotoXML
 
 				// schreibe programme-Container
 				string neuerFilm = "\n\n<programme id=\"automatic-ID:" + DatenSatzNummer + "\" product=\"1\" imdb_id=\"" + _daten [0].ofdbIMDb_ID + "\"  creator=\"automatic v0.1\">\n" +
-				                   "<title>\n" +
-				                   "<de>" + _daten [0].ofdbTitle + "</de>\n" +
-				                   "</title>\n" +
-				                   "<description>\n" +
-				                   "<de>" + _daten [0].ofdbDesc + "</de>\n" +
-				                   "</description>\n" +
-				                   "<staff>\n" +
-				                   "<member index=\"0\" function=\"1\">automatic-Celebrities-" + _daten [0].RegisseurVName + "_" + _daten [0].RegisseurNName + "</member>\n";
+					"<title>\n" +
+					"<de>" + _daten [0].ofdbTitle + "</de>\n" +
+					"</title>\n" +
+					"<description>\n" +
+					"<de>" + _daten [0].ofdbDesc + "</de>\n" +
+					"</description>\n" +
+					"<staff>\n";
+				if ((_daten [0].RegisseurVName != "") &&(_daten [0].RegisseurNName != ""))
+					neuerFilm += 	"<member index=\"0\" function=\"1\">automatic-Celebrities-" + _daten [0].RegisseurVName + "_" + _daten [0].RegisseurNName + "</member>\n";
 				if ((_daten [0].Darsteller1VName != "") &&(_daten [0].Darsteller1VName != ""))
 					neuerFilm +=	 "<member index=\"1\" function=\"2\">automatic-Celebrities-" + _daten [0].Darsteller1VName + "_" + _daten [0].Darsteller1NName + "</member>\n";
 				if ((_daten [0].Darsteller2VName != "") &&(_daten [0].Darsteller2VName != ""))
@@ -448,11 +449,11 @@ namespace FgotoXML
 					neuerFilm +=	"<member index=\"4\" function=\"2\">automatic-Celebrities-" + _daten [0].Darsteller4VName + "_" + _daten [0].Darsteller4NName + "</member>\n";
 				if ((_daten [0].Darsteller5VName != "") &&(_daten [0].Darsteller5VName != ""))
 					neuerFilm +=	"<member index=\"5\" function=\"2\">automatic-Celebrities-" + _daten [0].Darsteller5VName + "_" + _daten [0].Darsteller5NName + "</member>\n";
-					neuerFilm +=              "</staff>\n" +
-				                    "<groups target_groups=\"0\" pro_pressure_groups=\"0\" contra_pressure_groups=\"0\" />\n" +
+				neuerFilm +=              "</staff>\n" +
+					"<groups target_groups=\"0\" pro_pressure_groups=\"0\" contra_pressure_groups=\"0\" />\n" +
 					"<data country=\""+_daten[0].ofdbCountry+"\" year=\""+_daten[0].ofdbYear+"\" distribution=\"1\" maingenre=\""+_daten[0].ofdbMainGenre+"\" subgenre=\""+_daten[0].ofdbSubGenre+"\" flags=\""+_daten[0].omdbFlags+"\" blocks=\""+_daten[0].omdbRuntime+"\" price_mod=\"1\" />\n" +
-				                    "<ratings critics=\""+cr+"\" speed=\""+sp+"\" outcome=\""+ou+"\" />\n" +
-				                    "</programme>\n";
+					"<ratings critics=\""+cr+"\" speed=\""+sp+"\" outcome=\""+ou+"\" />\n" +
+					"</programme>\n";
 				// und zurechtschnippeln
 				myPosition = inhalt.IndexOf ("<allprogrammes>");
 				inhaltNeu = inhalt.Substring (0, myPosition + 15);
@@ -505,7 +506,7 @@ namespace FgotoXML
 			public string Darsteller5NName { get; set;}
 
 		}
-		
+
 		/// <summary>WegDamit</summary>
 		/// <returns>quelle [ohne] problem</returns>
 		/// <param name="quelle">string: quelle</param>
@@ -539,7 +540,7 @@ namespace FgotoXML
 		/// <param name="regexStr">string: regexStr</param>
 		/// Benötigt: System.Text.RegularExpressions
 		private static int CountStrings(string str, string regexStr)
-		{
+		{ 
 			System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(regexStr); 
 			return regex.Matches(str).Count;
 		}
